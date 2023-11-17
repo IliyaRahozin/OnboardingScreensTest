@@ -20,7 +20,7 @@ class OnboardingCoordinator: Coordinator {
     }
     
     func start() {
-        let viewController = OnboardingCollectionViewController()
+        let viewController = OnboardingCollectionViewController(pagesData: OnboardingPage.allCases)
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }
