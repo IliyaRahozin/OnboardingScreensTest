@@ -25,7 +25,10 @@
 		D05208F62B07C44B005240A0 /* OnboardingCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05208F52B07C44B005240A0 /* OnboardingCollectionLayout.swift */; };
 		D05208F92B07C65C005240A0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05208F82B07C65C005240A0 /* UIView.swift */; };
 		D05208FB2B07D86E005240A0 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05208FA2B07D86E005240A0 /* UITextView.swift */; };
-		D05208FD2B082140005240A0 /* CustomPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05208FC2B082140005240A0 /* CustomPageControl.swift */; };
+		D0A59BD32B08BDE000101800 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A59BD22B08BDE000101800 /* StartViewController.swift */; };
+		D0A59BD52B08BDE800101800 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A59BD42B08BDE800101800 /* StartCoordinator.swift */; };
+		D0A59BD72B09143500101800 /* UINavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A59BD62B09143500101800 /* UINavController.swift */; };
+		D0A59BD92B091AB500101800 /* Onboarding+StoreKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A59BD82B091AB500101800 /* Onboarding+StoreKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +53,11 @@
 		D05208F52B07C44B005240A0 /* OnboardingCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionLayout.swift; sourceTree = "<group>"; };
 		D05208F82B07C65C005240A0 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		D05208FA2B07D86E005240A0 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
-		D05208FC2B082140005240A0 /* CustomPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageControl.swift; sourceTree = "<group>"; };
+		D0A59BD22B08BDE000101800 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		D0A59BD42B08BDE800101800 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
+		D0A59BD62B09143500101800 /* UINavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavController.swift; sourceTree = "<group>"; };
+		D0A59BD82B091AB500101800 /* Onboarding+StoreKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Onboarding+StoreKit.swift"; sourceTree = "<group>"; };
+		D0A59BDA2B09215200101800 /* SKConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SKConfig.storekit; sourceTree = "<group>"; };
 		EE4F05C3BF939EFCD93B2DD4 /* Pods_OnboardingScreensTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnboardingScreensTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -107,9 +114,11 @@
 				D05208D22B0781A2005240A0 /* App */,
 				D05208D52B078257005240A0 /* Coordinator */,
 				D05208D42B0781C3005240A0 /* Onboarding */,
+				D0A59BD12B08BD9500101800 /* StartScreen */,
 				D05208ED2B07B16A005240A0 /* Helpers */,
 				D05208D32B0781BB005240A0 /* Supporting Files */,
 				D05208CC2B078076005240A0 /* Info.plist */,
+				D0A59BDA2B09215200101800 /* SKConfig.storekit */,
 			);
 			path = OnboardingScreensTest;
 			sourceTree = "<group>";
@@ -176,7 +185,6 @@
 				D05208E62B079197005240A0 /* Cell */,
 				D05208F72B07C60A005240A0 /* CollectionFlowLayout */,
 				D05208F32B07B8EB005240A0 /* OnboardingPageControllerView.swift */,
-				D05208FC2B082140005240A0 /* CustomPageControl.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				D05208C22B078074005240A0 /* OnboardingCollectionViewController.swift */,
+				D0A59BD82B091AB500101800 /* Onboarding+StoreKit.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 				D05208EE2B07B17D005240A0 /* UIColor.swift */,
 				D05208F82B07C65C005240A0 /* UIView.swift */,
 				D05208FA2B07D86E005240A0 /* UITextView.swift */,
+				D0A59BD62B09143500101800 /* UINavController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -237,6 +247,15 @@
 				D05208F52B07C44B005240A0 /* OnboardingCollectionLayout.swift */,
 			);
 			path = CollectionFlowLayout;
+			sourceTree = "<group>";
+		};
+		D0A59BD12B08BD9500101800 /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D0A59BD22B08BDE000101800 /* StartViewController.swift */,
+				D0A59BD42B08BDE800101800 /* StartCoordinator.swift */,
+			);
+			path = StartScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,17 +373,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D05208C32B078074005240A0 /* OnboardingCollectionViewController.swift in Sources */,
+				D0A59BD32B08BDE000101800 /* StartViewController.swift in Sources */,
+				D0A59BD72B09143500101800 /* UINavController.swift in Sources */,
 				D05208E12B07838F005240A0 /* OnboardingCoordinator.swift in Sources */,
 				D05208E52B078BC1005240A0 /* CollectionViewCell.swift in Sources */,
 				D05208FB2B07D86E005240A0 /* UITextView.swift in Sources */,
 				D05208D72B078268005240A0 /* MainCoordinator.swift in Sources */,
 				D05208DA2B07829C005240A0 /* Coordinator.swift in Sources */,
+				D0A59BD52B08BDE800101800 /* StartCoordinator.swift in Sources */,
 				D05208F62B07C44B005240A0 /* OnboardingCollectionLayout.swift in Sources */,
 				D05208BF2B078074005240A0 /* AppDelegate.swift in Sources */,
+				D0A59BD92B091AB500101800 /* Onboarding+StoreKit.swift in Sources */,
 				D05208EF2B07B17D005240A0 /* UIColor.swift in Sources */,
 				D05208F42B07B8EB005240A0 /* OnboardingPageControllerView.swift in Sources */,
 				D05208F92B07C65C005240A0 /* UIView.swift in Sources */,
-				D05208FD2B082140005240A0 /* CustomPageControl.swift in Sources */,
 				D05208F22B07B473005240A0 /* OnboardingPageViewModel.swift in Sources */,
 				D05208EC2B07AE25005240A0 /* Constant.swift in Sources */,
 				D05208C12B078074005240A0 /* SceneDelegate.swift in Sources */,

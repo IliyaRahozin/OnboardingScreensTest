@@ -22,7 +22,16 @@ class OnboardingCoordinator: Coordinator {
     func start() {
         let viewController = OnboardingCollectionViewController(pagesData: OnboardingPage.allCases)
         viewController.coordinator = self
-        navigationController.pushViewController(viewController, animated: true)
+        navigationController.push(viewController: viewController)
+    }
+    
+    func close() {
+        if let start = parentCoordinator?.childCoordinators.first(where: { $0 is StartCoordinator }) as? StartCoordinator {
+            parentCoordinator?.childCoordinators.removeLast()
+            navigationController.pop()
+        } else {
+            parentCoordinator?.navigateToStartViewController()
+        }
     }
     
 }

@@ -17,12 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navController = UINavigationController()
         coordinator = MainCoordinator(navigationController: navController)
+        coordinator?.start()
         
         window =  UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.backgroundColor = .systemBackground
+        // window?.backgroundColor = .systemBackground
         window?.rootViewController = navController
-        coordinator?.start()
         window?.makeKeyAndVisible()
         
     }

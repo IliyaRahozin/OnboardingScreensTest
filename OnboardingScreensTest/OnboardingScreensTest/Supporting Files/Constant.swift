@@ -8,6 +8,26 @@
 import UIKit
 
 class Constant {
+    
+    enum Payment: String  {
+        case productId = "com.OnboardingScreensTest"
+        
+        enum Product: CaseIterable {
+            case premMonth
+            
+            func getRawValue() -> String {
+                return Payment.productId.rawValue + "." + self.name
+            }
+            
+            var name: String {
+                switch self {
+                case .premMonth:
+                    return "premMonth"
+                }
+            }
+        }
+    }
+    
     static let background      = UIImage(named: "Background")
     static let activeControl   = UIImage(named: "active_page")
     static let inactiveControl = UIImage(named: "inactive_page")
@@ -48,6 +68,33 @@ class Constant {
                         Hyperlink.privacyPolicy.hyperLink,
                         Hyperlink.subscriptionTerms.hyperLink
                     ]
+        }
+        
+    }
+    
+    enum Builder {
+        static func createOnboardingTextButton(title: String, font: UIFont, textColor: UIColor) -> UIButton {
+            let button = UIButton(type: .system)
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.font = font
+            button.setTitleColor(textColor, for: .normal)
+            
+            return button
+        }
+        
+        static func closeButton() -> UIBarButtonItem {
+            let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: nil, action: nil)
+            closeButton.tintColor = UIColor.inactivePage
+            return closeButton
+        }
+
+        static func restorePurchaseButton() -> UIButton {
+            let title = "Restore Purchase"
+            let font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            let textColor = UIColor.inactivePage
+
+            let button = Constant.Builder.createOnboardingTextButton(title: title, font: font, textColor: textColor)
+            return button
         }
         
     }

@@ -15,7 +15,7 @@ class OnboardingCollectionViewController: UICollectionViewController {
     weak var coordinator: OnboardingCoordinator?
     private let disposeBag = DisposeBag()
     
-    private(set) var viewModel = OnboardingPageListViewModel([])
+    var viewModel = OnboardingPageListViewModel([])
         
     private(set) lazy var onboardinPageControllerView =
         OnboardinPageControllerView(viewModel: viewModel)
@@ -34,6 +34,7 @@ class OnboardingCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.preservesSuperviewLayoutMargins = true
+        setupPurchase()
         configureCollectionView()
         setupPageControllerView()
         setupOnboardingViewTapBindings()
@@ -50,10 +51,50 @@ class OnboardingCollectionViewController: UICollectionViewController {
 // MARK: UICollectionView DataSource/DelegateFlowLayout
 extension OnboardingCollectionViewController: UICollectionViewDelegateFlowLayout {
     
+    private func configureNavBar() {
+        let closeButton = Constant.Builder.closeButton()
+        let addButtonObservable = closeButton.rx.tap.asObservable()
+
+        addButtonObservable
+            .subscribe(onNext: { [weak self] in
+                self?.handleCloseButtonTap()
+            })
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem = closeButton
+        
+        let restorePurchaseButton = Constant.Builder.restorePurchaseButton()
+        let customBarButtonItem = UIBarButtonItem(customView: restorePurchaseButton)
+        let restorePurchaseButtonObservable = restorePurchaseButton.rx.tap.asObservable()
+
+        restorePurchaseButtonObservable
+            .subscribe(
+                onNext: { [weak self] in
+                    self?.handleRestorePurchase()
+                },
+               onError: { error in
+                    print("Error: \(error)")
+                }
+            )
+            .disposed(by: disposeBag)
+        
+        navigationItem.leftBarButtonItem = customBarButtonItem
+    }
+    
+    private func handleCloseButtonTap() {
+        print("Close button tapped!")
+        coordinator?.close()
+    }
+    
+    private func handleRestorePurchase() {
+        restorePurchase()
+        print("Restore Purchase button tapped!")
+    }
+    
     private func configureContentInset() {
         if let navigationController = navigationController {
             let topInset = navigationController.navigationBar.frame.size.height
-            collectionView?.contentInset.top = -topInset * 3
+            collectionView?.contentInset.top = -topInset * 2.3
         }
     }
     
@@ -78,6 +119,7 @@ extension OnboardingCollectionViewController: UICollectionViewDelegateFlowLayout
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.identifier)
         collectionView.showsHorizontalScrollIndicator = false
         
+        configureNavBar()
     }
     
     // MARK: UICollectionViewDataSource
@@ -111,8 +153,9 @@ extension OnboardingCollectionViewController: UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+        
         let width = collectionView.bounds.width - 62
-        let height = width * 1.65
+        let height = width * (view.frame.height < 670 ? 1.5 : 1.65)
         
         return CGSize(width: width, height: height)
     }
@@ -154,6 +197,7 @@ extension OnboardingCollectionViewController {
     
     private func handleSubscribe() {
         print("Free & Sub logic")
+        makePayment()
     }
     
     func handleUpdatePageController(at index: Int, aniamteCollection: Bool) {

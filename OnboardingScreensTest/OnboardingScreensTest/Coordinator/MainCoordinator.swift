@@ -27,5 +27,20 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         childCoordinators.append(child)
         child.start()
     }
+        
+    func navigateToStartViewController() {
+        popCoordinator(childCoordinators.first)
+        let child = StartCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func popCoordinator(_ coordinator: Coordinator?) {
+        if let index = childCoordinators.firstIndex(where: { $0 === coordinator }) {
+            childCoordinators.remove(at: index)
+            navigationController.viewControllers.remove(at: index)
+        }
+    }
     
 }

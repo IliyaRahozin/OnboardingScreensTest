@@ -7,9 +7,12 @@
 
 import Foundation
 import RxSwift
+import StoreKit
 
 protocol OnboardingPageListViewModelType {
     var currentPageIndex: Int { get set }
+    var paymentModel: [SKProduct] { get set }
+    mutating func setPaymentModel(with obj: [SKProduct])
     func numberOfSections() -> Int
     func numberOfItemInSection(in section: Int) -> Int
     func getPageForRow(at indexPath: IndexPath) -> OnboardingPageViewModel
@@ -18,12 +21,17 @@ protocol OnboardingPageListViewModelType {
 struct OnboardingPageListViewModel: OnboardingPageListViewModelType {
 
     var currentPageIndex: Int
+    var paymentModel: [SKProduct] = []
 
     private var onboardingPagesViewModel: [OnboardingPageViewModel]
 
     init(_ pages: [OnboardingPage]) {
         self.currentPageIndex = 0
         self.onboardingPagesViewModel = OnboardingPage.allCases.compactMap(OnboardingPageViewModel.init)
+    }
+    
+    mutating func setPaymentModel(with obj: [SKProduct]) {
+        self.paymentModel = obj
     }
         
     func numberOfSections() -> Int {

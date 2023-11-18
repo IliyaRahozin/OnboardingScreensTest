@@ -74,29 +74,29 @@ extension CollectionViewCell {
             make.edges.equalToSuperview()
         }
         
+        let stackview = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
+        stackview.distribution = .fill
+        stackview.axis = .vertical
+        stackview.alignment = .center
+        stackview.spacing = 10
+        
         containerView.addSubviews(
             illustrationImageView,
-            titleLabel,
-            descriptionLabel
+            stackview
         )
         
         illustrationImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
+            make.top.equalToSuperview().inset(20)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(illustrationImageView.snp.width).multipliedBy(1.12)
         }
         
-        titleLabel.snp.makeConstraints { make in
+        stackview.snp.makeConstraints { make in
             make.top.equalTo(illustrationImageView.snp.bottom).offset(10)
             make.left.right.equalTo(illustrationImageView)
-            make.height.equalTo(62)
+            make.bottom.lessThanOrEqualToSuperview().inset(10)
+            
         }
-        
-        descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).inset(5)
-            make.left.right.equalTo(illustrationImageView)
-            make.bottom.equalTo(containerView).offset(-30)
-        }
-        
     }
+    
 }
